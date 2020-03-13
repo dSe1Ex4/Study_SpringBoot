@@ -7,21 +7,28 @@
 <body>
     <!--/*@thymesVar id="name" type="java.lang.String"*/-->
     <p th:text="'Hello, ' + ${name} + '!'" />
+    <form th:action="@{/addMessage}" method="post">
+        <div><label> Tag: <input type="text" name="tag"/> </label></div>
+        <div><label> Text: <input type="text" name="text"/> </label></div>
+        <div><input type="submit" value="Send"/></div>
+    </form>
 </body>
-<table>
+<table border="1">
     <thead>
     <tr>
         <th> Tag </th>
         <th> Text </th>
+        <th> Author </th>
     </tr>
     </thead>
     <tbody>
         <tr th:if="${messages.empty}">
-            <td colspan="2"> No Books Available </td>
+            <td colspan="3"> No Books Available </td>
         </tr>
         <tr th:each="msg : ${messages}">
             <td><span th:text="${msg.tag}"> Tag </span></td>
             <td><span th:text="${msg.text}"> Text </span></td>
+            <td><span th:text="${msg.authorName}"> Author </span></td>
         </tr>
     </tbody>
 </table>
